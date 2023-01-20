@@ -32,12 +32,17 @@ private:
 	void setupSprite();
 
 	sf::RenderWindow m_window; // main SFML window
-	sf::Font m_ArialBlackfont; // font used by message
-	sf::Text m_welcomeMessage; // text used for message on screen
-	sf::Texture m_logoTexture; // texture used for sfml logo
-	sf::Sprite m_logoSprite; // sprite used for sfml logo
+	
+	
+	sf::Font m_marioFont; // fomt for name
+	sf::Text m_name; // text for name
+
+
 	bool m_exitGame; // control exiting game
 
+	sf::Texture m_marioTexture; //texture used for mario and luigi
+	sf::Sprite m_marioSprite;  // sprite for mario and luigi
+	sf::Vector2f m_marioLocation; // marios location belly button
 };
 
 #endif // !GAME_HPP

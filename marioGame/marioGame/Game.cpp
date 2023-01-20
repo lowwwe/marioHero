@@ -103,6 +103,12 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		m_window.close();
 	}
+	m_marioLocation += sf::Vector2f(10.4f, 2.0f);
+	if (m_marioLocation.x > 400.0f)
+	{
+		m_marioLocation.x = 400.0f;
+	}
+	m_marioSprite.setPosition(m_marioLocation);
 }
 
 /// <summary>
@@ -111,8 +117,11 @@ void Game::update(sf::Time t_deltaTime)
 void Game::render()
 {
 	m_window.clear(sf::Color::White);
-	m_window.draw(m_welcomeMessage);
-	m_window.draw(m_logoSprite);
+	m_window.draw(m_marioSprite);
+
+	m_window.draw(m_name);
+	
+	
 	m_window.display();
 }
 
@@ -121,18 +130,20 @@ void Game::render()
 /// </summary>
 void Game::setupFontAndText()
 {
-	if (!m_ArialBlackfont.loadFromFile("ASSETS\\FONTS\\ariblk.ttf"))
+	if (!m_marioFont.loadFromFile("ASSETS\\FONTS\\SuperMario256.ttf"))
 	{
-		std::cout << "problem loading arial black font" << std::endl;
+		std::cout << "error fomt";
 	}
-	m_welcomeMessage.setFont(m_ArialBlackfont);
-	m_welcomeMessage.setString("SFML Game");
-	m_welcomeMessage.setStyle(sf::Text::Underlined | sf::Text::Italic | sf::Text::Bold);
-	m_welcomeMessage.setPosition(40.0f, 40.0f);
-	m_welcomeMessage.setCharacterSize(80U);
-	m_welcomeMessage.setOutlineColor(sf::Color::Red);
-	m_welcomeMessage.setFillColor(sf::Color::Black);
-	m_welcomeMessage.setOutlineThickness(3.0f);
+	m_name.setFont(m_marioFont);
+	m_name.setString("Mario");
+	m_name.setCharacterSize(70U);
+	m_name.setFillColor(sf::Color::Red);
+	m_name.setOutlineColor(sf::Color::Black);
+	m_name.setOutlineThickness(2.0f);
+
+	m_name.setPosition(100.0f, 100.0f);
+
+	
 
 }
 
@@ -141,11 +152,14 @@ void Game::setupFontAndText()
 /// </summary>
 void Game::setupSprite()
 {
-	if (!m_logoTexture.loadFromFile("ASSETS\\IMAGES\\SFML-LOGO.png"))
+	if (!m_marioTexture.loadFromFile("ASSETS\\IMAGES\\mario-luigi-64.png"))
 	{
-		// simple error message if previous call fails
-		std::cout << "problem loading logo" << std::endl;
+		std::cout << "problem with mario image" << std::endl;
 	}
-	m_logoSprite.setTexture(m_logoTexture);
-	m_logoSprite.setPosition(300.0f, 180.0f);
+	m_marioSprite.setTexture(m_marioTexture);
+	m_marioSprite.setTextureRect(sf::IntRect{ 64,0,64,148 });
+	m_marioLocation =  sf::Vector2f{ 32.0f,74.0f };
+	m_marioSprite.setOrigin(32.0f, 74.0f);
+
+	
 }
