@@ -40,6 +40,7 @@ private:
 	void render();
 	void checkDirection();
 	void move();
+	void changeCharacter();
 	
 	void setupFontAndText();
 	void setupSprite();
@@ -57,7 +58,8 @@ private:
 	sf::Texture m_marioTexture; //texture used for mario and luigi
 	sf::Sprite m_marioSprite;  // sprite for mario and luigi
 	sf::Vector2f m_marioLocation; // marios location belly button
-	float m_speed = 2.45f;
+	float m_speed = 2.45f; // speed that marioo maove at
+	bool m_isaMario{ false };// is the character mario
 };
 
 #endif // !GAME_HPP

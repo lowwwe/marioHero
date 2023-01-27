@@ -77,6 +77,7 @@ void Game::processEvents()
 		{
 			processKeys(newEvent);
 		}
+		
 	}
 }
 
@@ -90,6 +91,10 @@ void Game::processKeys(sf::Event t_event)
 	if (sf::Keyboard::Escape == t_event.key.code)
 	{
 		m_exitGame = true;
+	}
+	if (sf::Keyboard::Space == t_event.key.code)
+	{
+		changeCharacter();
 	}
 }
 
@@ -171,6 +176,23 @@ void Game::move()
 		break;
 	}
 	m_marioLocation += velocity;
+}
+
+void Game::changeCharacter()
+{
+	if (m_isaMario)
+	{
+		m_marioSprite.setTextureRect(sf::IntRect{ 64,0,64,148 });
+		m_name.setString("Luigi");
+		m_name.setFillColor(sf::Color::Green);
+	}
+	else
+	{
+		m_marioSprite.setTextureRect(sf::IntRect{ 0,0,64,148 });
+		m_name.setString("Mario");
+		m_name.setFillColor(sf::Color::Red);
+	}
+	m_isaMario = !m_isaMario;
 }
 
 /// <summary>
