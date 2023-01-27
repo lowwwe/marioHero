@@ -10,6 +10,7 @@
 /// Don't forget the endif at the bottom
 /// </summary>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 
 enum class Direction
@@ -62,6 +63,9 @@ private:
 	float m_speed = 2.45f; // speed that marioo maove at
 	bool m_isaMario{ false };// is the character mario
 	bool m_canChange{ true };
+
+	sf::SoundBuffer m_buffer;
+	sf::Sound m_sound;
 };
 
 #endif // !GAME_HPP

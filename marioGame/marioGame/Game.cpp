@@ -239,6 +239,10 @@ void Game::setupFontAndText()
 /// </summary>
 void Game::setupSprite()
 {
+
+	m_buffer.loadFromFile("ASSETS\\AUDIO\\mario.wav");
+	m_sound.setBuffer(m_buffer);
+	m_sound.play();
 	if (!m_marioTexture.loadFromFile("ASSETS\\IMAGES\\mario-luigi-64.png"))
 	{
 		std::cout << "problem with mario image" << std::endl;
