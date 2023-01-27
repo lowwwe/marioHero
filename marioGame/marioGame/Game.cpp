@@ -103,11 +103,9 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		m_window.close();
 	}
-	m_marioLocation += sf::Vector2f(10.4f, 2.0f);
-	if (m_marioLocation.x > 400.0f)
-	{
-		m_marioLocation.x = 400.0f;
-	}
+	
+	checkDirection();
+	move();
 	m_marioSprite.setPosition(m_marioLocation);
 }
 
@@ -123,6 +121,42 @@ void Game::render()
 	
 	
 	m_window.display();
+}
+
+void Game::checkDirection()
+{
+	m_direction = Direction::None;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	{
+		m_direction = Direction::Up;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	{
+		m_direction = Direction::Down;
+	}
+}
+
+void Game::move()
+{
+	sf::Vector2f velocity{0.0f,0.0f};//movement for this frame 
+	switch (m_direction)
+	{
+	case Direction::None:
+		break;
+	case Direction::Down:
+		velocity.y = m_speed;
+		break;
+	case Direction::Up:
+		velocity.y = -m_speed;
+		break;
+	case Direction::Right:
+		break;
+	case Direction::Left:
+		break;
+	default:
+		break;
+	}
+	m_marioLocation += velocity;
 }
 
 /// <summary>

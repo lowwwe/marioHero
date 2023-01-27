@@ -11,6 +11,17 @@
 /// </summary>
 #include <SFML/Graphics.hpp>
 
+
+enum class Direction
+{
+	None,
+	Down,
+	Up,
+	Right,
+	Left
+};
+
+
 class Game
 {
 public:
@@ -27,6 +38,8 @@ private:
 	void processKeys(sf::Event t_event);
 	void update(sf::Time t_deltaTime);
 	void render();
+	void checkDirection();
+	void move();
 	
 	void setupFontAndText();
 	void setupSprite();
@@ -39,10 +52,12 @@ private:
 
 
 	bool m_exitGame; // control exiting game
+	Direction m_direction{ Direction::None };
 
 	sf::Texture m_marioTexture; //texture used for mario and luigi
 	sf::Sprite m_marioSprite;  // sprite for mario and luigi
 	sf::Vector2f m_marioLocation; // marios location belly button
+	float m_speed = 2.45f;
 };
 
 #endif // !GAME_HPP
