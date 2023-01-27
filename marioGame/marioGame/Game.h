@@ -41,9 +41,10 @@ private:
 	void checkDirection();
 	void move();
 	void changeCharacter();
-	
+	void processKeyReleases(sf::Event t_event);
 	void setupFontAndText();
 	void setupSprite();
+	void centreText(sf::Text& t_text, float t_y);
 
 	sf::RenderWindow m_window; // main SFML window
 	
@@ -60,6 +61,7 @@ private:
 	sf::Vector2f m_marioLocation; // marios location belly button
 	float m_speed = 2.45f; // speed that marioo maove at
 	bool m_isaMario{ false };// is the character mario
+	bool m_canChange{ true };
 };
 
 #endif // !GAME_HPP

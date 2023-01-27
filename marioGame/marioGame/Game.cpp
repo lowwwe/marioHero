@@ -77,6 +77,10 @@ void Game::processEvents()
 		{
 			processKeys(newEvent);
 		}
+		if (sf::Event::KeyReleased == newEvent.type)
+		{
+			processKeyReleases(newEvent);
+		}
 		
 	}
 }
@@ -94,7 +98,11 @@ void Game::processKeys(sf::Event t_event)
 	}
 	if (sf::Keyboard::Space == t_event.key.code)
 	{
-		changeCharacter();
+		if (m_canChange)
+		{
+			changeCharacter();
+			m_canChange = false;
+		}
 	}
 }
 
@@ -192,7 +200,16 @@ void Game::changeCharacter()
 		m_name.setString("Mario");
 		m_name.setFillColor(sf::Color::Red);
 	}
+	centreText(m_name, 200.0f);
 	m_isaMario = !m_isaMario;
+}
+
+void Game::processKeyReleases(sf::Event t_event)
+{
+	if (sf::Keyboard::Space == t_event.key.code  )
+	{
+		m_canChange = true;
+	}
 }
 
 /// <summary>
@@ -232,4 +249,12 @@ void Game::setupSprite()
 	m_marioSprite.setOrigin(32.0f, 74.0f);
 
 	
+}
+
+void Game::centreText(sf::Text& t_text, float t_y)
+{
+	float x = 0.0f;
+	const float WIDTH = 800.0f;
+	x = (WIDTH - t_text.getGlobalBounds().width) / 2.0f;
+	t_text.setPosition(x, t_y);
 }
